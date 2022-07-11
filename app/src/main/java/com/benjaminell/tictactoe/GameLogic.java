@@ -1,80 +1,35 @@
 package com.benjaminell.tictactoe;
 
 import android.app.Activity;
+import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class GameLogic extends Activity {
-    public boolean checkDraw(Grid grid){
-        for (int i = 0; i < grid.grid.size(); i++){
-            if(grid.grid.get(i).getText() == ""){
-                return false;
-            }
+    public boolean checkDraw(Grid grid) {
+        for (int i = 0; i < grid.grid.size(); i++) {
+            if (grid.grid.get(i).getText() == "") return false;
         }
         return true;
     }
+
+    public boolean checkRow(ArrayList<Button> line, String currentPlayer) {
+        return line.get(0).getText() == currentPlayer &&
+                line.get(1).getText() == currentPlayer &&
+                line.get(2).getText() == currentPlayer;
+    }
+
     public String checkWin(Grid grid) {
         String[] players = {"X", "O"};
-        for (int i = 0; i < players.length; i++) {
-            if (grid.row1.get(0).getText() == players[i] &&
-                    grid.row1.get(1).getText() == players[i] &&
-                    grid.row1.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.row2.get(0).getText() == players[i] &&
-                    grid.row2.get(1).getText() == players[i] &&
-                    grid.row2.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.row3.get(0).getText() == players[i] &&
-                    grid.row3.get(1).getText() == players[i] &&
-                    grid.row3.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.column1.get(0).getText() == players[i] &&
-                    grid.column1.get(1).getText() == players[i] &&
-                    grid.column1.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.column2.get(0).getText() == players[i] &&
-                    grid.column2.get(1).getText() == players[i] &&
-                    grid.column2.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.column3.get(0).getText() == players[i] &&
-                    grid.column3.get(1).getText() == players[i] &&
-                    grid.column3.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.diagonalLeftRight.get(0).getText() == players[i] &&
-                    grid.diagonalLeftRight.get(1).getText() == players[i] &&
-                    grid.diagonalLeftRight.get(2).getText() == players[i]) {
-                return players[i];
-            }
-        }
-
-        for (int i = 0; i < players.length; i++) {
-            if (grid.diagonalRightLeft.get(0).getText() == players[i] &&
-                    grid.diagonalRightLeft.get(1).getText() == players[i] &&
-                    grid.diagonalRightLeft.get(2).getText() == players[i]) {
-                return players[i];
-            }
+        for (String player : players) {
+            if (checkRow(grid.row1, player) == true) return player;
+            else if (checkRow(grid.row2, player) == true) return player;
+            else if (checkRow(grid.row3, player) == true) return player;
+            else if (checkRow(grid.column1, player) == true) return player;
+            else if (checkRow(grid.column2, player) == true) return player;
+            else if (checkRow(grid.column3, player) == true) return player;
+            else if (checkRow(grid.diagonalLeftRight, player) == true) return player;
+            else if (checkRow(grid.diagonalRightLeft, player) == true) return player;
         }
         return "";
     }

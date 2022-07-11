@@ -8,24 +8,27 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.benjaminell.tictactoe.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     private ActivityMainBinding binding;
 
     private TextView turnText;
     private TextView winText;
+
     private ConstraintLayout gameBox;
     private ConstraintLayout winScreen;
+    private ConstraintLayout mainMenu;
+    private ConstraintLayout aboutMenu;
 
     private Grid grid = new Grid();
     private GameLogic gameLogic = new GameLogic();
+    private AILogic ai = new AILogic();
 
-    private boolean aiOn = false;
-    private boolean playerTurn = true;
+    private boolean aiOnFlag = false;
+    private boolean playerTurnFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,13 @@ public class MainActivity extends Activity {
 
         gameBox = binding.GameBox;
         winScreen = binding.WinScreen;
+        mainMenu = binding.MainMenu;
+        aboutMenu = binding.AboutMenu;
 
-        gameBox.setVisibility(View.VISIBLE);
-        winScreen.setVisibility(View.INVISIBLE);
+        mainMenu.setVisibility(View.VISIBLE);
+        gameBox.setVisibility(View.GONE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
 
         turnText = binding.turnText;
         winText = binding.winText;
@@ -59,194 +66,129 @@ public class MainActivity extends Activity {
         turnText.setText("Turn: X");
     }
 
+    public void playBtn(View view) {
+        mainMenu.setVisibility(View.GONE);
+        gameBox.setVisibility(View.VISIBLE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
+    }
+
+    public void playAIBtn(View view) {
+        mainMenu.setVisibility(View.GONE);
+        gameBox.setVisibility(View.VISIBLE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
+        aiOnFlag = true;
+    }
+
+    public void aboutBtn(View view) {
+        mainMenu.setVisibility(View.GONE);
+        gameBox.setVisibility(View.GONE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.VISIBLE);
+    }
+
+    public void aboutBackBtn(View view) {
+        mainMenu.setVisibility(View.VISIBLE);
+        gameBox.setVisibility(View.GONE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
+    }
+
     private void hasWon() {
         String hasWon = gameLogic.checkWin(grid);
         if (hasWon == "X") {
-            gameBox.setVisibility(View.INVISIBLE);
+            gameBox.setVisibility(View.GONE);
             winText.setText(hasWon + " Wins");
             winScreen.setVisibility(View.VISIBLE);
         } else if (hasWon == "O") {
-            gameBox.setVisibility(View.INVISIBLE);
+            gameBox.setVisibility(View.GONE);
             winText.setText(hasWon + " Wins");
             winScreen.setVisibility(View.VISIBLE);
         }
     }
-    private void hasDrawn(){
-        if(gameLogic.checkDraw(grid) == true){
-            gameBox.setVisibility(View.INVISIBLE);
+
+    private void hasDrawn() {
+        if (gameLogic.checkDraw(grid) == true) {
+            gameBox.setVisibility(View.GONE);
             winText.setText("Draw");
             winScreen.setVisibility(View.VISIBLE);
         }
     }
+
     public void resetBtn(View view) {
         grid.resetGrid();
-        playerTurn = true;
+        playerTurnFlag = true;
     }
-    public void winOkBtn(View view){
+
+    public void winOkBtn(View view) {
+        playerTurnFlag = true;
         grid.resetGrid();
         winText.setText("");
-        winScreen.setVisibility(View.INVISIBLE);
-        gameBox.setVisibility(View.VISIBLE);
+        winScreen.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.VISIBLE);
     }
-    public void tile1Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row1.get(0).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row1.get(0).setText("X");
-                    playerTurn = false;
+
+    public void moves(ArrayList<Button> line,int square){
+        if (aiOnFlag == false) {
+            if (line.get(square).getText() == "") {
+                if (playerTurnFlag == true) {
+                    line.get(square).setText("X");
+                    playerTurnFlag = false;
                     turnText.setText("Turn: O");
                 } else {
-                    grid.row1.get(0).setText("O");
-                    playerTurn = true;
+                    line.get(square).setText("O");
+                    playerTurnFlag = true;
                     turnText.setText("Turn: X");
                 }
+            }
+        } else {
+            if (line.get(square).getText() == "") {
+                if (playerTurnFlag == true) {
+                    line.get(square).setText("X");
+                    playerTurnFlag = false;
+                    turnText.setText("Turn: O");
+                }
+                ai.aiMakeMove(grid);
+                playerTurnFlag = true;
             }
         }
         hasWon();
         hasDrawn();
+    }
+    public void tile1Clicked(View view) {
+        moves(grid.row1, 0);
     }
 
     public void tile2Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row1.get(1).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row1.get(1).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row1.get(1).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row1, 1);
     }
 
     public void tile3Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row1.get(2).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row1.get(2).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row1.get(2).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row1, 2);
     }
 
     public void tile4Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row2.get(0).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row2.get(0).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row2.get(0).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row2, 0);
     }
 
     public void tile5Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row2.get(1).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row2.get(1).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row2.get(1).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row2, 1);
     }
 
     public void tile6Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row2.get(2).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row2.get(2).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row2.get(2).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row2, 2);
     }
 
     public void tile7Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row3.get(0).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row3.get(0).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row3.get(0).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row3, 0);
     }
 
     public void tile8Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row3.get(1).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row3.get(1).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row3.get(1).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row3, 1);
     }
 
     public void tile9Clicked(View view) {
-        if (aiOn == false) {
-            if (grid.row3.get(2).getText() == "") {
-                if (playerTurn == true) {
-                    grid.row3.get(2).setText("X");
-                    playerTurn = false;
-                    turnText.setText("Turn: O");
-                } else {
-                    grid.row3.get(2).setText("O");
-                    playerTurn = true;
-                    turnText.setText("Turn: X");
-                }
-            }
-        }
-        hasWon();
-        hasDrawn();
+        moves(grid.row3, 2);
     }
 }
