@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="reset">Reset</string>
+    <string name="turn">Turn:</string>
+    <string name="x_wins">X Wins</string>
+    <string name="ok">Ok</string>
+    <string name="play_ai">Play AI</string>
+    <string name="play">Play</string>
+    <string name="about">About</string>
+    <string name="back">Back</string>
+    <string name="created_by_benjamin_ell_jones">Created By Benjamin Ell-Jones</string>
+    <string name="app_version_1_0">App Version: 1.0</string>
+</resources>

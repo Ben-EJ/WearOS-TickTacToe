@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boxInsetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/box_inset_layout_padding"
+    android:visibility="visible"
+    tools:context=".MainActivity"
+    tools:deviceIds="wear"
+    tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/GameBox"
+        android:layout_width="195dp"
+        android:layout_height="195dp"
+        android:visibility="gone"
+        app:layout_boxedEdges="all"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/tile5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="tile5Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile2"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="21dp"
+            android:onClick="tile1Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile4"
+            app:layout_constraintEnd_toStartOf="@+id/tile2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/tile2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="22dp"
+            android:onClick="tile2Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile5"
+            app:layout_constraintEnd_toStartOf="@+id/tile3"
+            app:layout_constraintStart_toEndOf="@+id/tile1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="38dp"
+            android:onClick="tile3Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tile2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="1dp"
+            android:onClick="tile4Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile7"
+            app:layout_constraintEnd_toStartOf="@+id/tile5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile1"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/tile7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="37dp"
+            android:onClick="tile7Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/resetBtn"
+            app:layout_constraintEnd_toStartOf="@+id/tile8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile4"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile8"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="2dp"
+            android:onClick="tile8Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/resetBtn"
+            app:layout_constraintEnd_toStartOf="@+id/tile9"
+            app:layout_constraintStart_toEndOf="@+id/tile7"
+            app:layout_constraintTop_toBottomOf="@+id/tile5"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginBottom="3dp"
+            android:onClick="tile9Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/turnText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tile8"
+            app:layout_constraintTop_toBottomOf="@+id/tile6"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/tile6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="37dp"
+            android:onClick="tile6Clicked"
+            app:layout_constraintBottom_toTopOf="@+id/tile9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tile5"
+            app:layout_constraintTop_toBottomOf="@+id/tile3"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="resetBtn"
+            android:text="@string/reset"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.274"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile7"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/turnText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="32dp"
+            android:clickable="false"
+            android:text="@string/turn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.591"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/WinScreen"
+        android:layout_width="134dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/winText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/x_wins"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="winOkBtn"
+            android:text="@string/ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.833" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
