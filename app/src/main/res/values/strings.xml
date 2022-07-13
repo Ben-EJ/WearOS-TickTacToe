@@ -16,4 +16,7 @@
     <string name="created_by_benjamin_ell_jones">Created By Benjamin Ell-Jones</string>
     <string name="app_version_1_0">App Version: 1.0</string>
     <string name="tictactoe">TicTacToe</string>
+    <string name="ai_settings">AI Settings</string>
+    <string name="textview">TextView</string>
+    <string name="backAISettingsBtn">Back</string>
 </resources>

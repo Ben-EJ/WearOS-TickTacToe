@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,10 +19,15 @@ public class MainActivity extends Activity {
     private TextView turnText;
     private TextView winText;
 
+    private Switch winRuleSwitch;
+    private Switch blockPlayerRuleSwitch;
+    private Switch setUpWinRuleSwitch;
+
     private ConstraintLayout gameBox;
     private ConstraintLayout winScreen;
     private ConstraintLayout mainMenu;
     private ConstraintLayout aboutMenu;
+    private  ConstraintLayout aiSettingsMenu;
 
     private Grid grid = new Grid();
     private GameLogic gameLogic = new GameLogic();
@@ -41,11 +47,17 @@ public class MainActivity extends Activity {
         winScreen = binding.WinScreen;
         mainMenu = binding.MainMenu;
         aboutMenu = binding.AboutMenu;
+        aiSettingsMenu = binding.AISettingsMenu;
+
+        winRuleSwitch = binding.winRuleSwitch;
+        blockPlayerRuleSwitch = binding.blockPlayerRuleSwitch;
+        setUpWinRuleSwitch = binding.setUpWinRuleSwitch;
 
         mainMenu.setVisibility(View.VISIBLE);
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.GONE);
 
         turnText = binding.turnText;
         winText = binding.winText;
@@ -71,6 +83,8 @@ public class MainActivity extends Activity {
         gameBox.setVisibility(View.VISIBLE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.GONE);
+        aiOnFlag = false;
     }
 
     public void playAIBtn(View view) {
@@ -78,6 +92,7 @@ public class MainActivity extends Activity {
         gameBox.setVisibility(View.VISIBLE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.GONE);
         aiOnFlag = true;
     }
 
@@ -86,6 +101,7 @@ public class MainActivity extends Activity {
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.VISIBLE);
+        aiSettingsMenu.setVisibility(View.GONE);
     }
 
     public void aboutBackBtn(View view) {
@@ -93,6 +109,22 @@ public class MainActivity extends Activity {
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.GONE);
+    }
+    public void aiMenuBtn(View view) {
+        mainMenu.setVisibility(View.GONE);
+        gameBox.setVisibility(View.GONE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.VISIBLE);
+    }
+
+    public void aiMenuBackBtn(View view) {
+        mainMenu.setVisibility(View.VISIBLE);
+        gameBox.setVisibility(View.GONE);
+        winScreen.setVisibility(View.GONE);
+        aboutMenu.setVisibility(View.GONE);
+        aiSettingsMenu.setVisibility(View.GONE);
     }
 
     private void hasWon() {
@@ -149,8 +181,9 @@ public class MainActivity extends Activity {
                     playerTurnFlag = false;
                     turnText.setText("Turn: O");
                 }
-                ai.aiMakeMove(grid);
+                ai.aiMakeMove(grid,winRuleSwitch.isChecked(),blockPlayerRuleSwitch.isChecked(),setUpWinRuleSwitch.isChecked());
                 playerTurnFlag = true;
+                turnText.setText("Turn: X");
             }
         }
         hasWon();

@@ -15,8 +15,8 @@ public class GameLogic extends Activity {
 
     public boolean checkRow(ArrayList<Button> line, String currentPlayer) {
         return line.get(0).getText() == currentPlayer &&
-                line.get(1).getText() == currentPlayer &&
-                line.get(2).getText() == currentPlayer;
+               line.get(1).getText() == currentPlayer &&
+               line.get(2).getText() == currentPlayer;
     }
 
     public String checkWin(Grid grid) {
