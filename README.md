@@ -17,7 +17,7 @@
 ![Single_Player_Win_No_AI gif](https://github.com/Ben-EJ/WearOS-TickTacToe/blob/main/Screenshots/gifs/Single_Player_Win_No_AI.gif?raw=true)
 
 # Single player no AI.
-![Singleplayer_No_AI gif](https://github.com/Ben-EJ/WearOS-TickTacToe/blob/main/main/Screenshots/gifs/Singleplayer_No_AI.gif?raw=true)
+![Singleplayer_No_AI gif](https://github.com/Ben-EJ/WearOS-TickTacToe/blob/main/Screenshots/gifs/Singleplayer_No_AI.gif?raw=true)
 
 # Gameplay VS the AI.
 ![VS_AI_Gameplay gif](https://github.com/Ben-EJ/WearOS-TickTacToe/blob/main/Screenshots/gifs/VS_AI_Gameplay.gif?raw=true)
