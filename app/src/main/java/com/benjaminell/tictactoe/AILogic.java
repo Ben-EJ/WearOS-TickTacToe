@@ -6,6 +6,8 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class AILogic extends Activity {
+
+    //Rule that allows the AI to go for the win if it has the opportunity to do so. I.E it has two game pieces next to each other with a space free next to that.
     public boolean ruleTryWin(ArrayList<Button> line){
         if(line.get(0).getText() == "O" && line.get(1).getText() == "O" && line.get(2).getText() == ""){
             line.get(2).setText("O");
@@ -21,6 +23,8 @@ public class AILogic extends Activity {
         }
         return false;
     }
+
+    //Rule that allows the ai to block the player from winning if the player has two game pieces next to each other.
     public boolean ruleBlockPlayer(ArrayList<Button> line){
         if(line.get(0).getText() == "X" && line.get(1).getText() == "X" && line.get(2).getText() == ""){
             line.get(2).setText("O");
@@ -36,6 +40,8 @@ public class AILogic extends Activity {
         }
         return false;
     }
+
+    // Rule that allows the ai to set up a win by putting its game piece next to one of its own.
     public boolean ruleSetUpWin(ArrayList<Button> line){
         if(line.get(0).getText() == "" && line.get(1).getText() == "" && line.get(2).getText() == "O"){
             line.get(1).setText("O");
@@ -51,6 +57,7 @@ public class AILogic extends Activity {
         }
         return false;
     }
+    // If the AI does not know what to do, just put a game piece in the next available slot.
     public boolean ruleNextEmpty(ArrayList<Button> grid){
         for(int i = 0; i < grid.size(); i++){
             if(grid.get(i).getText() == ""){
@@ -61,6 +68,7 @@ public class AILogic extends Activity {
         return false;
     }
 
+    //AI Move function.
     public boolean aiMakeMove(Grid grid, boolean enableWinRule,boolean enableBlockPlayerRule, boolean enableSetUpWinRule){
         if(enableWinRule == true) {
             if (ruleTryWin(grid.row1) == true) {

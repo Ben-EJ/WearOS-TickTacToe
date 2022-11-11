@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         turnText.setText("Turn: X");
     }
 
-    public void playBtn(View view) {
+    public void playBtn(View view) {//Handles what happens when the play button is clicked.
         mainMenu.setVisibility(View.GONE);
         gameBox.setVisibility(View.VISIBLE);
         winScreen.setVisibility(View.GONE);
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
         aiOnFlag = false;
     }
 
-    public void playAIBtn(View view) {
+    public void playAIBtn(View view) {//Handles what happens when the play AI button is clicked.
         mainMenu.setVisibility(View.GONE);
         gameBox.setVisibility(View.VISIBLE);
         winScreen.setVisibility(View.GONE);
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
         aiOnFlag = true;
     }
 
-    public void aboutBtn(View view) {
+    public void aboutBtn(View view) {//Handles what happens when the about button is clicked.
         mainMenu.setVisibility(View.GONE);
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
@@ -104,14 +104,14 @@ public class MainActivity extends Activity {
         aiSettingsMenu.setVisibility(View.GONE);
     }
 
-    public void aboutBackBtn(View view) {
+    public void aboutBackBtn(View view) {//Handles what happens when the back button in the about menu is clicked.
         mainMenu.setVisibility(View.VISIBLE);
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
         aboutMenu.setVisibility(View.GONE);
         aiSettingsMenu.setVisibility(View.GONE);
     }
-    public void aiMenuBtn(View view) {
+    public void aiMenuBtn(View view) {//Handles what happens when the Ai settings menu button is clicked.
         mainMenu.setVisibility(View.GONE);
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
         aiSettingsMenu.setVisibility(View.VISIBLE);
     }
 
-    public void aiMenuBackBtn(View view) {
+    public void aiMenuBackBtn(View view) {//Handles what happens when the back button in the ai settings menu is clicked.
         mainMenu.setVisibility(View.VISIBLE);
         gameBox.setVisibility(View.GONE);
         winScreen.setVisibility(View.GONE);
@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
         aiSettingsMenu.setVisibility(View.GONE);
     }
 
-    private void hasWon() {
+    private void hasWon() {// Checks to see which player won and sets visibility of game objects also sets ending text.
         String hasWon = gameLogic.checkWin(grid);
         if (hasWon == "X") {
             gameBox.setVisibility(View.GONE);
@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void hasDrawn() {
+    private void hasDrawn() {//Checks to see if the players have drawn and sets visibility of game objects also sets ending text.
         if (gameLogic.checkDraw(grid) == true) {
             gameBox.setVisibility(View.GONE);
             winText.setText("Draw");
@@ -148,12 +148,12 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void resetBtn(View view) {
+    public void resetBtn(View view) {//Function resets the game board.
         grid.resetGrid();
         playerTurnFlag = true;
     }
 
-    public void winOkBtn(View view) {
+    public void winOkBtn(View view) {//Handles what happens when the ok button is clicked.
         playerTurnFlag = true;
         grid.resetGrid();
         winText.setText("");
@@ -161,7 +161,7 @@ public class MainActivity extends Activity {
         mainMenu.setVisibility(View.VISIBLE);
     }
 
-    public void moves(ArrayList<Button> line,int square){
+    public void moves(ArrayList<Button> line,int square){// Handles player moves.
         if (aiOnFlag == false) {
             if (line.get(square).getText() == "") {
                 if (playerTurnFlag == true) {
@@ -189,6 +189,7 @@ public class MainActivity extends Activity {
         hasWon();
         hasDrawn();
     }
+    //These functions handle what happens when a button on the game grid is clicked.
     public void tile1Clicked(View view) {
         moves(grid.row1, 0);
     }

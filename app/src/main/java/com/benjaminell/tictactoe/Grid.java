@@ -5,6 +5,8 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+//Class handles the game grid.
+
 public class Grid extends Activity {
     ArrayList<Button> grid = new ArrayList<Button>();
     ArrayList<Button> row1 = new ArrayList<Button>();
@@ -18,12 +20,13 @@ public class Grid extends Activity {
     ArrayList<Button> diagonalLeftRight = new ArrayList<Button>();
     ArrayList<Button> diagonalRightLeft = new ArrayList<Button>();
 
-    public void resetGrid() {
+    public void resetGrid() {// Resets each field in grid.
         for (int i = 0; i < grid.size(); i++) {
             grid.get(i).setText("");
         }
     }
 
+    // Next set of functions initialise grid.
     public void constructGrid() {
         grid.addAll(row1);
         grid.addAll(row2);
